@@ -255,7 +255,7 @@ footer{position:relative;z-index:3;text-align:center;padding:clamp(40px,7vw,70px
   <div class="marco">
     <div class="guirnalda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <p class="saludo">Hoy el mundo celebra que existes</p>
-    <h1 id="nombre">Amor</h1>
+    <h1 id="nombre">Mi mugre</h1>
     <p class="fecha">8 DE OCTUBRE</p>
 
     <p class="lema">Que empiece la fiesta</p>
@@ -271,7 +271,7 @@ footer{position:relative;z-index:3;text-align:center;padding:clamp(40px,7vw,70px
   <div class="marco">
     <div class="centrado">
       <h2 class="rubro">Nosotros</h2>
-      <p class="bajada">Seis momentos que guardo como si fueran míos y tuyos al mismo tiempo.</p>
+      <p class="bajada">Seis momentos que realmente luces bella.</p>
     </div>
 
     <div class="visor">
@@ -292,7 +292,7 @@ footer{position:relative;z-index:3;text-align:center;padding:clamp(40px,7vw,70px
 <section id="carta">
   <div class="marco">
     <h2 class="rubro">Una carta para ti</h2>
-    <p class="bajada">Llevo días escribiéndola en la cabeza. Ábrela cuando estés tranquila.</p>
+    <p class="bajada">Llevo días escribiéndola en la cabeza. Ábrela si me quieres un poquito.</p>
 
     <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta">
       <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
@@ -463,7 +463,7 @@ footer{position:relative;z-index:3;text-align:center;padding:clamp(40px,7vw,70px
 
 <footer>
   <div class="marco">
-    <p class="credito">Hecho a mano, para ti — 8 de octubre</p>
+    <p class="credito">Con mucho cariño, para ti — 8 de octubre- R David</p>
   </div>
 </footer>
 
@@ -482,12 +482,12 @@ const CONFIG = {
     "mananitas.mp3"
   ],
   fotos: [
-    { url:"https://lh3.googleusercontent.com/d/1oSNyhXuaMkHFnlk5dfedi5vsO_m_xKIo=w1600", pie:"El día que empezó todo" },
-    { url:"https://lh3.googleusercontent.com/d/1t2PKDae_cLTUbuPwSMXwIlrCkL-vWWZ_=w1600", pie:"Tu risa, mi lugar favorito" },
-    { url:"https://lh3.googleusercontent.com/d/1tS96I6Wezf2AH9HPkPWHu6ysdxxB6BFZ=w1600", pie:"Ese viaje que no queríamos terminar" },
-    { url:"https://lh3.googleusercontent.com/d/1KZ9DHYlwJ6j1g5XHuGxjXiLha5n538iM=w1600", pie:"Domingos contigo" },
-    { url:"https://lh3.googleusercontent.com/d/1MgPzNvg8jckdBXa6JrDRsuoYGfcYl2VE=w1600", pie:"Cuando el tiempo se detuvo un rato" },
-    { url:"https://lh3.googleusercontent.com/d/1E6X8QoCw5i8LYcMAPT0e2lSApgLMz-BW=w1600", pie:"Y todo lo que falta" }
+    { url:"https://lh3.googleusercontent.com/d/1oSNyhXuaMkHFnlk5dfedi5vsO_m_xKIo=w1600", pie:"No te conocía, pero vaya flow" },
+    { url:"https://lh3.googleusercontent.com/d/1t2PKDae_cLTUbuPwSMXwIlrCkL-vWWZ_=w1600", pie:"Es un momento que guardo siempre" },
+    { url:"https://lh3.googleusercontent.com/d/1tS96I6Wezf2AH9HPkPWHu6ysdxxB6BFZ=w1600", pie:"Vaya, realmente eres hermosa" },
+    { url:"https://lh3.googleusercontent.com/d/1KZ9DHYlwJ6j1g5XHuGxjXiLha5n538iM=w1600", pie:"Me enecanta esta foto" },
+    { url:"https://lh3.googleusercontent.com/d/1MgPzNvg8jckdBXa6JrDRsuoYGfcYl2VE=w1600", pie:"Esos ojos, ojos hechizeros" },
+    { url:"https://lh3.googleusercontent.com/d/1E6X8QoCw5i8LYcMAPT0e2lSApgLMz-BW=w1600", pie:"Que elegancia la de Francia" }
   ]
 };
 const $ = (s,c=document)=>c.querySelector(s);
@@ -689,7 +689,7 @@ flotante.addEventListener("click",()=>{ alternar(); document.getElementById("mar
 audio.addEventListener("ended",()=>estado(false));
 audio.addEventListener("error",()=>{
   if(!siguienteFuente()){
-    $("#avisoAudio").innerHTML='No pude cargar el audio desde el enlace. Toca <b>Usar mi archivo mp3</b> y elige tu archivo.';
+    $("#avisoAudio").innerHTML=' Creo que no pude cargar el audio desde el enlace. Toca <b>Usar mi archivo mp3</b> y elige tu archivo.';
   }
 });
 $("#btnArchivo").addEventListener("click",()=>$("#inputAudio").click());
