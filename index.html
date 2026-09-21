@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz Cumpleaños</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --vino:#6B1F2E;
+  --vino-hondo:#2E0C15;
+  --tinta:#1A060C;
+  --dorado:#C9A227;
+  --dorado-luz:#EBCF86;
+  --crema:#F4E9D7;
+  --terracota:#C2683E;
+  --oliva:#6E7350;
+  --papel:#F6EEDD;
+
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  --script:"Great Vibes","Cormorant Garamond",cursive;
+
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root:not([data-theme="light"]){ color-scheme:dark; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ color-scheme:dark; } }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 700px at 50% -8%, rgba(201,162,39,.20), transparent 62%),
+    radial-gradient(900px 600px at 110% 40%, rgba(194,104,62,.14), transparent 60%),
+    linear-gradient(175deg, var(--vino-hondo) 0%, var(--tinta) 45%, #240810 100%);
+  background-color:var(--tinta);
+  color:var(--crema);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--dorado-luz);outline-offset:3px;border-radius:2px}
+
+/* ---------- capas de fondo ---------- */
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:60}
+#globos{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.globo{position:absolute;bottom:-22vh;width:46px;opacity:.5;animation:subir linear forwards}
+@keyframes subir{
+  0%{transform:translateY(0) rotate(-3deg)}
+  100%{transform:translateY(-135vh) rotate(3deg)}
+}
+.grano{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.05;
+  background-image:radial-gradient(rgba(244,233,215,.9) 1px, transparent 1px);
+  background-size:3px 3px;}
+
+/* ---------- estructura ---------- */
+.marco{position:relative;z-index:3;max-width:1060px;margin:0 auto;padding:0 22px}
+section{position:relative;z-index:3;padding:clamp(64px,9vw,118px) 0}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:.01em}
+p{margin:0 0 1em}
+
+.rubro{font-family:var(--script);font-size:clamp(1.9rem,4.2vw,2.9rem);color:var(--dorado-luz);line-height:1;margin-bottom:.35em}
+.rubro + .bajada{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(244,233,215,.62);margin-bottom:2.2rem;max-width:46ch}
+.centrado{text-align:center}
+.centrado .bajada{margin-left:auto;margin-right:auto}
+
+/* ---------- portada ---------- */
+#portada{min-height:100svh;display:grid;place-items:center;padding-top:calc(48px + env(safe-area-inset-top,0px));text-align:center}
+.foco{position:absolute;inset:0;background:radial-gradient(520px 340px at 50% 30%, rgba(235,207,134,.13), transparent 70%);pointer-events:none}
+.guirnalda{display:flex;justify-content:center;gap:14px;margin-bottom:26px}
+.guirnalda i{width:7px;height:7px;border-radius:50%;background:var(--dorado);display:block;animation:latir 2.4s ease-in-out infinite}
+.guirnalda i:nth-child(2n){background:var(--terracota);animation-delay:.3s}
+.guirnalda i:nth-child(3n){background:var(--dorado-luz);animation-delay:.6s}
+.guirnalda i:nth-child(5n){animation-delay:.9s}
+@keyframes latir{0%,100%{opacity:.25;box-shadow:none}50%{opacity:1;box-shadow:0 0 14px currentColor}}
+
+.saludo{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.5rem);color:rgba(244,233,215,.7);margin-bottom:.15em}
+#nombre{
+  font-family:var(--serif);
+  font-size:clamp(3.6rem,15vw,9.5rem);
+  line-height:.9;
+  background:linear-gradient(180deg,#FBF1D8 0%,var(--dorado-luz) 45%,var(--dorado) 78%,#9C7B15 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 26px rgba(201,162,39,.22));
+  margin:.06em 0 .18em;
+}
+.fecha{display:inline-flex;align-items:center;gap:16px;font-family:var(--serif);font-size:1.15rem;letter-spacing:.22em;color:var(--crema)}
+.fecha::before,.fecha::after{content:"";width:clamp(28px,9vw,80px);height:1px;background:linear-gradient(90deg,transparent,var(--dorado),transparent)}
+
+.lema{font-family:var(--script);font-size:clamp(1.9rem,5.6vw,2.9rem);color:var(--dorado-luz);margin:2.2rem 0 1.9rem;line-height:1}
+
+.boton{
+  border:1px solid var(--dorado);
+  background:linear-gradient(180deg, rgba(201,162,39,.16), rgba(201,162,39,.04));
+  color:var(--crema);
+  padding:.85em 2em;border-radius:999px;
+  letter-spacing:.06em;font-size:.95rem;
+  transition:background .3s ease, transform .2s ease, box-shadow .3s ease;
+}
+.boton:hover{background:var(--dorado);color:var(--tinta);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,162,39,.3)}
+.boton.solido{background:var(--vino);border-color:var(--vino)}
+.boton.solido:hover{background:var(--dorado);border-color:var(--dorado)}
+.flecha-abajo{display:block;margin:46px auto 0;width:20px;opacity:.45;animation:flotar 2.6s ease-in-out infinite}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+
+/* ---------- galería ---------- */
+.visor{position:relative;overflow:hidden;border-radius:6px;background:rgba(0,0,0,.25);
+  max-height:78vh;
+  box-shadow:0 30px 70px rgba(0,0,0,.45), 0 0 0 1px rgba(201,162,39,.28), 0 0 0 9px rgba(107,31,46,.35)}
+.pista{display:flex;transition:transform .75s cubic-bezier(.22,1,.36,1)}
+.lamina{min-width:100%;aspect-ratio:4/5;position:relative;overflow:hidden;background:
+  repeating-linear-gradient(135deg, rgba(107,31,46,.5) 0 18px, rgba(46,12,21,.5) 18px 36px)}
+@media (min-width:560px){ .lamina{aspect-ratio:1/1} }
+@media (min-width:820px){ .lamina{aspect-ratio:16/10} }
+.lamina .fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:blur(28px) saturate(1.15) brightness(.55);transform:scale(1.18);opacity:.9}
+.lamina img.foto{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;
+  transition:transform 1.1s cubic-bezier(.22,1,.36,1), filter .6s;cursor:zoom-in}
+.lamina:hover img.foto{transform:scale(1.035)}
+.lamina .vacio{position:absolute;inset:0;display:grid;place-content:center;gap:10px;justify-items:center;text-align:center;padding:24px;color:rgba(244,233,215,.62)}
+.lamina .vacio small{font-size:.78rem;letter-spacing:.08em;max-width:30ch}
+.pie{position:absolute;left:0;right:0;bottom:0;padding:44px 24px 18px;font-family:var(--serif);font-style:italic;font-size:1.05rem;
+  background:linear-gradient(transparent,rgba(26,6,12,.85));pointer-events:none}
+.mando{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:22px}
+.mando button{background:none;border:1px solid rgba(201,162,39,.45);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;transition:.25s}
+.mando button:hover{background:var(--dorado);color:var(--tinta)}
+.puntos{display:flex;gap:9px}
+.puntos i{width:7px;height:7px;border-radius:50%;background:rgba(244,233,215,.28);cursor:pointer;transition:.3s;display:block}
+.puntos i.on{background:var(--dorado);transform:scale(1.35)}
+.cargar{display:block;margin:18px auto 0;font-size:.82rem;letter-spacing:.05em;background:none;border:0;color:rgba(244,233,215,.45);text-decoration:underline;text-underline-offset:4px}
+.cargar:hover{color:var(--dorado-luz)}
+
+/* lightbox */
+#lupa{position:fixed;inset:0;z-index:80;background:rgba(14,3,7,.94);display:none;place-items:center;padding:24px;cursor:zoom-out}
+#lupa.on{display:grid}
+#lupa img{max-width:min(94vw,1200px);max-height:86vh;object-fit:contain;border:1px solid rgba(201,162,39,.35);box-shadow:0 30px 80px rgba(0,0,0,.6);animation:aparecer .4s ease}
+@keyframes aparecer{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+
+/* ---------- carta ---------- */
+#carta{text-align:center}
+.sobre{width:min(420px,88vw);margin:0 auto;position:relative;cursor:pointer;transition:transform .4s ease}
+.sobre:hover{transform:translateY(-6px)}
+.sobre svg{width:100%;height:auto;filter:drop-shadow(0 22px 44px rgba(0,0,0,.5))}
+.sobre .pista-clic{margin-top:18px;font-size:.85rem;letter-spacing:.14em;color:rgba(244,233,215,.5)}
+.pergamino{
+  max-width:640px;margin:0 auto;background:
+    radial-gradient(120% 100% at 50% 0%, #FFFAF0, var(--papel) 60%, #E9DCC2 100%);
+  color:#3B2418;padding:clamp(34px,6vw,62px) clamp(26px,6vw,58px);
+  border-radius:3px;position:relative;text-align:left;
+  box-shadow:0 34px 70px rgba(0,0,0,.5);
+  display:none;
+}
+.pergamino.on{display:block;animation:desplegar .9s cubic-bezier(.22,1,.36,1)}
+@keyframes desplegar{from{opacity:0;transform:perspective(900px) rotateX(-14deg) scaleY(.82);transform-origin:top}to{opacity:1;transform:none}}
+.pergamino::before,.pergamino::after{content:"";position:absolute;left:0;right:0;height:14px}
+.pergamino::before{top:-6px;background:linear-gradient(180deg,rgba(0,0,0,.18),transparent);border-radius:3px 3px 0 0}
+.pergamino::after{bottom:-6px;background:linear-gradient(0deg,rgba(0,0,0,.18),transparent)}
+.pergamino h3{font-family:var(--script);font-size:clamp(2rem,5vw,2.8rem);color:var(--vino);margin-bottom:.4em}
+.pergamino p{font-family:var(--serif);font-size:clamp(1.06rem,2.1vw,1.22rem);line-height:1.85;max-width:62ch}
+.pergamino .firma{font-family:var(--script);font-size:1.9rem;color:var(--vino);text-align:right;margin-top:1.2em}
+.sello{position:absolute;right:-14px;bottom:-16px;width:76px}
+.gato-carta{position:absolute;top:-56px;right:24px;width:86px}
+
+/* ---------- mariachis ---------- */
+#mariachis{background:linear-gradient(180deg, rgba(107,31,46,.28), rgba(26,6,12,0) 70%)}
+.tarima{max-width:760px;margin:0 auto;position:relative}
+.tarima svg{width:100%;height:auto}
+.trio g.musico{transform-origin:center bottom;animation:none}
+.tocando .trio g.musico{animation:mecer 1.05s ease-in-out infinite}
+.tocando .trio g.musico:nth-child(2){animation-delay:.18s}
+.tocando .trio g.musico:nth-child(3){animation-delay:.36s}
+@keyframes mecer{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-8px) rotate(1.2deg)}}
+.notas{position:absolute;inset:0;pointer-events:none}
+.nota{position:absolute;bottom:38%;font-size:1.5rem;color:var(--dorado-luz);opacity:0;animation:volar 3.4s ease-out forwards}
+@keyframes volar{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),-230px) rotate(28deg)}}
+.consola{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:34px}
+.aviso{font-size:.82rem;color:rgba(244,233,215,.5);max-width:44ch;text-align:center;margin:14px auto 0}
+input[type=file]{display:none}
+
+/* ---------- pastel ---------- */
+#pastel{text-align:center}
+.mesa{max-width:420px;margin:0 auto;position:relative}
+.mesa svg{width:100%;height:auto;overflow:visible}
+.llama{transform-origin:50% 100%;animation:titilar .42s ease-in-out infinite alternate}
+@keyframes titilar{from{transform:scaleY(.86) scaleX(1.05)}to{transform:scaleY(1.1) scaleX(.93)}}
+.apagado .llama,.apagado .halo{opacity:0;transition:opacity .25s}
+.humo{opacity:0}
+.apagado .humo{animation:humear 2.6s ease-out forwards}
+@keyframes humear{0%{opacity:.55;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-70px) scale(1.5)}}
+.deseo{font-family:var(--script);font-size:1.7rem;color:var(--dorado-luz);min-height:2.2em;margin-top:18px}
+
+/* ---------- cierre ---------- */
+footer{position:relative;z-index:3;text-align:center;padding:clamp(40px,7vw,70px) 0 clamp(54px,8vw,90px)}
+.credito{margin:0;font-size:.78rem;letter-spacing:.14em;color:rgba(244,233,215,.34)}
+
+/* gatos decorativos */
+.gato-borde{position:absolute;width:clamp(64px,9vw,104px);opacity:.9;z-index:4;pointer-events:none}
+.gato-izq{left:2%;bottom:0}
+.gato-der{right:3%;top:-34px}
+
+/* música flotante */
+#flotante{position:fixed;right:16px;top:calc(16px + env(safe-area-inset-top,0px));z-index:70;
+  width:50px;height:50px;border-radius:50%;border:1px solid rgba(201,162,39,.5);
+  background:rgba(26,6,12,.72);backdrop-filter:blur(8px);display:grid;place-items:center;transition:.3s}
+#flotante:hover{background:var(--dorado);color:var(--tinta)}
+#flotante.sonando{box-shadow:0 0 0 0 rgba(201,162,39,.5);animation:pulso 2s ease-out infinite}
+@keyframes pulso{to{box-shadow:0 0 0 22px rgba(201,162,39,0)}}
+
+@media (max-width:640px){
+  .gato-der{top:-22px;right:0}
+  .pie{font-size:.95rem;padding:34px 16px 14px}
+  .gato-carta{top:-40px;right:8px;width:64px}
+  .sello{width:58px;right:-8px;bottom:-12px}
+  #flotante{width:44px;height:44px}
+  .mesa{max-width:280px}
+}
+@media (min-width:641px) and (max-width:1024px){
+  .marco{max-width:92%}
+  .visor{max-height:64vh}
+}
+@media (min-width:1025px){
+  .visor{max-height:70vh}
+}
+@media (max-width:380px){
+  #nombre{font-size:clamp(3rem,17vw,5rem)}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confeti"></canvas>
+<div id="globos" aria-hidden="true"></div>
+<div class="grano" aria-hidden="true"></div>
+
+<button id="flotante" title="Las Mañanitas" aria-label="Reproducir Las Mañanitas">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
+</button>
+
+<!-- ============ PORTADA ============ -->
+<section id="portada">
+  <div class="foco" aria-hidden="true"></div>
+  <div class="marco">
+    <div class="guirnalda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="saludo">Hoy el mundo celebra que existes</p>
+    <h1 id="nombre">Amor</h1>
+    <p class="fecha">8 DE OCTUBRE</p>
+
+    <p class="lema">Que empiece la fiesta</p>
+
+    <button class="boton" id="btnConfeti">Lanzar confeti</button>
+
+    <svg class="flecha-abajo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria">
+  <div class="marco">
+    <div class="centrado">
+      <h2 class="rubro">Nosotros</h2>
+      <p class="bajada">Seis momentos que guardo como si fueran míos y tuyos al mismo tiempo.</p>
+    </div>
+
+    <div class="visor">
+      <div class="pista" id="pista"></div>
+    </div>
+
+    <div class="mando">
+      <button id="prev" aria-label="Foto anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="puntos" id="puntos"></div>
+      <button id="next" aria-label="Foto siguiente"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <button class="cargar" id="btnFotos">Elegir las fotos desde este dispositivo</button>
+    <input type="file" id="inputFotos" accept="image/*" multiple>
+  </div>
+</section>
+
+<!-- ============ CARTA ============ -->
+<section id="carta">
+  <div class="marco">
+    <h2 class="rubro">Una carta para ti</h2>
+    <p class="bajada">Llevo días escribiéndola en la cabeza. Ábrela cuando estés tranquila.</p>
+
+    <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta">
+      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gSobre" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F6EEDD"/><stop offset="1" stop-color="#E3D2B4"/>
+          </linearGradient>
+          <linearGradient id="gSolapa" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EFE3CB"/><stop offset="1" stop-color="#D9C4A1"/>
+          </linearGradient>
+        </defs>
+        <rect x="10" y="40" width="380" height="200" rx="5" fill="url(#gSobre)"/>
+        <path d="M10 45 L200 165 L390 45 Z" fill="url(#gSolapa)" stroke="#C9B893" stroke-width="1"/>
+        <path d="M10 240 L150 140 M390 240 L250 140" stroke="#CBB995" stroke-width="1.2" fill="none"/>
+        <circle cx="200" cy="150" r="26" fill="#6B1F2E"/>
+        <path d="M200 162c-9-6-15-11-15-18a7.5 7.5 0 0 1 15-3 7.5 7.5 0 0 1 15 3c0 7-6 12-15 18z" fill="#EBCF86"/>
+      </svg>
+      <p class="pista-clic">Toca el sobre</p>
+    </div>
+
+    <div class="pergamino" id="pergamino">
+      <svg class="gato-carta" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22 96c-4-26 6-46 38-46s42 20 38 46z" fill="#2E0C15"/>
+        <path d="M30 56 L26 26 L52 44 Z M90 56 L94 26 L68 44 Z" fill="#2E0C15"/>
+        <path d="M32 52 L30 36 L44 46 Z M88 52 L90 36 L76 46 Z" fill="#C2683E" opacity=".65"/>
+        <circle cx="46" cy="70" r="4.6" fill="#EBCF86"/><circle cx="74" cy="70" r="4.6" fill="#EBCF86"/>
+        <circle cx="47" cy="71" r="2" fill="#1A060C"/><circle cx="75" cy="71" r="2" fill="#1A060C"/>
+        <path d="M60 79l-4 3 4 3 4-3z" fill="#C2683E"/>
+      </svg>
+      <h3>Mi Yatziri:</h3>
+      <p>No sé realmente si somos amigos, o si nos hemos vuelto dos extraños que solo fingen no conocerse. Frente al papel, las palabras parecen quedarse cortas; no sé cómo se le escribe a la persona que, de pronto y para siempre, me cambió la vida. Podría intentar listar cada una de las cosas que me cautivan de ti, pero la lista se volvería infinita. Solo me queda decirte esto, tan sencillo y eterno: tus ojos son hermosos.</p>
+      <p>Hoy cumples años, y me queda la certeza de que el verdadero regalo no es para ti, sino para quienes tienen la fortuna de habitar tu espacio y tenerte un año más. Disfruta de este día y de cada uno de los que vengan; esta vida, con todo y sus grietas, de verdad vale la pena ser vivida. Cuídate mucho, no te guardes los corajes, bebe agua y atiende tu cuerpo, que no quiero que los achaques te alcancen antes de tiempo.</p>
+      <p>Eres lo más puro y hermoso que le queda a este mundo cruel, aunque a veces tú también me muestres esa misma frialdad. Pero eso al final no importa; el cariño que te tengo no sabe de condiciones. Te quiero con toda mi alma. Feliz cumpleaños; ve y aduéñate de cada uno de tus sueños.</p>
+      <svg class="sello" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="50" r="38" fill="#6B1F2E"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#EBCF86" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <path d="M50 68c-13-9-21-16-21-26a11 11 0 0 1 21-4 11 11 0 0 1 21 4c0 10-8 17-21 26z" fill="#EBCF86"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARIACHIS ============ -->
+<section id="mariachis">
+  <svg class="gato-borde gato-izq" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18 88c-3-24 8-42 42-42s45 18 42 42z" fill="#3A1018"/>
+    <path d="M28 50 L24 22 L48 38 Z M92 50 L96 22 L72 38 Z" fill="#3A1018"/>
+    <circle cx="46" cy="64" r="5" fill="#EBCF86"/><circle cx="76" cy="64" r="5" fill="#EBCF86"/>
+    <circle cx="47" cy="65" r="2.2" fill="#1A060C"/><circle cx="77" cy="65" r="2.2" fill="#1A060C"/>
+    <path d="M61 73l-4 3 4 3 4-3z" fill="#C2683E"/>
+    <path d="M30 70h-16M30 76h-16M90 70h16M90 76h16" stroke="#EBCF86" stroke-width="1" opacity=".5"/>
+  </svg>
+
+  <div class="marco centrado">
+    <h2 class="rubro">Te traje mariachi</h2>
+    <p class="bajada">Porque un cumpleaños sin serenata no es un cumpleaños. Dale play y súbele.</p>
+
+    <div class="tarima" id="tarima">
+      <div class="notas" id="notas"></div>
+      <svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tres mariachis tocando">
+        <defs>
+          <linearGradient id="luna" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(235,207,134,.28)"/><stop offset="1" stop-color="rgba(235,207,134,0)"/>
+          </linearGradient>
+        </defs>
+        <circle cx="350" cy="120" r="150" fill="url(#luna)"/>
+        <g class="trio">
+          <!-- guitarrón -->
+          <g class="musico">
+            <ellipse cx="160" cy="312" rx="66" ry="10" fill="rgba(0,0,0,.35)"/>
+            <path d="M120 312 V214 q0-42 40-42 t40 42 v98z" fill="#3A1018"/>
+            <path d="M140 200 h40 v112 h-40z" fill="#5A1826"/>
+            <circle cx="160" cy="168" r="27" fill="#E3C39B"/>
+            <path d="M144 166 q16 12 32 0" stroke="#3A1018" stroke-width="2" fill="none"/>
+            <circle cx="151" cy="160" r="2.4" fill="#2A1013"/><circle cx="169" cy="160" r="2.4" fill="#2A1013"/>
+            <path d="M139 184 q21 16 42 0" stroke="#7B2C1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="160" cy="142" rx="54" ry="10" fill="#C9A227"/>
+            <path d="M136 146 q24-34 48 0z" fill="#8B6C12"/>
+            <ellipse cx="160" cy="140" rx="24" ry="16" fill="#C9A227"/>
+            <ellipse cx="176" cy="262" rx="42" ry="46" fill="#7A4A22"/>
+            <ellipse cx="176" cy="262" rx="14" ry="15" fill="#2A1013"/>
+            <rect x="150" y="186" width="14" height="62" rx="3" fill="#5C3417" transform="rotate(-16 157 217)"/>
+            <path d="M126 210 q26 40 52 52" stroke="#E3C39B" stroke-width="9" fill="none" stroke-linecap="round"/>
+          </g>
+          <!-- trompeta -->
+          <g class="musico">
+            <ellipse cx="350" cy="312" rx="60" ry="10" fill="rgba(0,0,0,.35)"/>
+            <path d="M314 312 V206 q0-40 36-40 t36 40 v106z" fill="#3A1018"/>
+            <path d="M332 194 h36 v118 h-36z" fill="#5A1826"/>
+            <circle cx="350" cy="160" r="26" fill="#E9CBA6"/>
+            <circle cx="341" cy="153" r="2.4" fill="#2A1013"/><circle cx="359" cy="153" r="2.4" fill="#2A1013"/>
+            <ellipse cx="350" cy="170" rx="7" ry="5" fill="#7B2C1A"/>
+            <ellipse cx="350" cy="134" rx="52" ry="10" fill="#C2683E"/>
+            <ellipse cx="350" cy="132" rx="23" ry="15" fill="#C2683E"/>
+            <path d="M330 136 q20-30 40 0z" fill="#8C4526"/>
+            <path d="M356 170 h48" stroke="#C9A227" stroke-width="7" stroke-linecap="round"/>
+            <path d="M404 158 l22-12 v36 l-22-12z" fill="#EBCF86"/>
+            <path d="M362 178 q18 16 40 4" stroke="#E9CBA6" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M338 182 q6 12 16 6" stroke="#E9CBA6" stroke-width="9" fill="none" stroke-linecap="round"/>
+          </g>
+          <!-- violín -->
+          <g class="musico">
+            <ellipse cx="540" cy="312" rx="58" ry="10" fill="rgba(0,0,0,.35)"/>
+            <path d="M506 312 V212 q0-38 34-38 t34 38 v100z" fill="#3A1018"/>
+            <path d="M524 200 h32 v112 h-32z" fill="#5A1826"/>
+            <circle cx="540" cy="168" r="25" fill="#DDB98E"/>
+            <circle cx="532" cy="162" r="2.4" fill="#2A1013"/><circle cx="549" cy="162" r="2.4" fill="#2A1013"/>
+            <path d="M531 178 q10 8 20 0" stroke="#7B2C1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="540" cy="142" rx="50" ry="9" fill="#6E7350"/>
+            <ellipse cx="540" cy="140" rx="22" ry="14" fill="#6E7350"/>
+            <g transform="rotate(-24 560 214)">
+              <ellipse cx="566" cy="216" rx="20" ry="28" fill="#8A4A1E"/>
+              <rect x="560" y="176" width="12" height="40" rx="3" fill="#4A2510"/>
+              <path d="M556 210 q10 6 20 0" stroke="#2A1013" stroke-width="1.4" fill="none"/>
+            </g>
+            <path d="M520 208 q30 28 58 10" stroke="#C9A227" stroke-width="3"/>
+            <path d="M512 206 q22 34 44 26" stroke="#DDB98E" stroke-width="9" fill="none" stroke-linecap="round"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <audio id="cancion" preload="auto"></audio>
+    <div class="consola">
+      <button class="boton solido" id="btnCancion">Tocar Las Mañanitas</button>
+      <button class="boton" id="btnArchivo">Usar mi archivo mp3</button>
+      <input type="file" id="inputAudio" accept="audio/*">
+    </div>
+    <p class="aviso" id="avisoAudio">Si el enlace no carga, guarda el archivo como <b>mananitas.mp3</b> junto a este HTML, o toca “Usar mi archivo mp3”.</p>
+  </div>
+
+  <svg class="gato-borde gato-der" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18 88c-3-24 8-42 42-42s45 18 42 42z" fill="#5A1826"/>
+    <path d="M28 50 L24 22 L48 38 Z M92 50 L96 22 L72 38 Z" fill="#5A1826"/>
+    <ellipse cx="60" cy="44" rx="34" ry="7" fill="#C9A227"/>
+    <ellipse cx="60" cy="41" rx="15" ry="10" fill="#C9A227"/>
+    <circle cx="46" cy="66" r="5" fill="#EBCF86"/><circle cx="76" cy="66" r="5" fill="#EBCF86"/>
+    <circle cx="47" cy="67" r="2.2" fill="#1A060C"/><circle cx="77" cy="67" r="2.2" fill="#1A060C"/>
+    <path d="M61 75l-4 3 4 3 4-3z" fill="#C2683E"/>
+  </svg>
+</section>
+
+<!-- ============ PASTEL ============ -->
+<section id="pastel">
+  <div class="marco">
+    <h2 class="rubro">Pide un deseo</h2>
+    <p class="bajada">Toca cada vela para encenderla. Cuando estén todas, sopla.</p>
+
+    <div class="mesa" id="mesa">
+      <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel de cumpleaños con velas">
+        <ellipse cx="160" cy="276" rx="126" ry="14" fill="rgba(0,0,0,.35)"/>
+        <rect x="40" y="196" width="240" height="78" rx="12" fill="#6B1F2E"/>
+        <rect x="40" y="196" width="240" height="16" rx="8" fill="#8A2A3C"/>
+        <rect x="62" y="142" width="196" height="62" rx="11" fill="#8A2A3C"/>
+        <rect x="62" y="142" width="196" height="14" rx="7" fill="#A63548"/>
+        <path d="M62 156 q16 20 32 0 q16 20 32 0 q16 20 32 0 q16 20 32 0 q16 20 32 0 q16 20 32 0 v-12 H62z" fill="#F4E9D7"/>
+        <path d="M40 210 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 v-14 H40z" fill="#F4E9D7"/>
+        <circle cx="96" cy="232" r="4" fill="#C9A227"/><circle cx="150" cy="248" r="4" fill="#C2683E"/>
+        <circle cx="206" cy="230" r="4" fill="#C9A227"/><circle cx="246" cy="250" r="4" fill="#C2683E"/>
+        <circle cx="120" cy="178" r="3.4" fill="#C9A227"/><circle cx="196" cy="182" r="3.4" fill="#C2683E"/>
+        <g id="velas"></g>
+      </svg>
+    </div>
+    <p class="deseo" id="deseo"></p>
+    <button class="boton" id="btnSoplar">Soplar las velas</button>
+  </div>
+</section>
+
+<footer>
+  <div class="marco">
+    <p class="credito">Hecho a mano, para ti — 8 de octubre</p>
+  </div>
+</footer>
+
+<div id="lupa"><img id="lupaImg" alt="Foto ampliada"></div>
+
+<script>
+/* ======================================================
+   CONFIGURACIÓN — cambia solo estas líneas
+   ====================================================== */
+const CONFIG = {
+  nombre: "Mi mugre",             // <- nombre / apodo que aparece en la portada
+  mes: 10, dia: 8,                // 8 de octubre
+  // Se intentan en orden: primero tu archivo de Drive, luego el mp3 local
+  audio: [
+    "https://drive.google.com/uc?export=download&id=1l3ai5LAVmvAUVeOVxSPSUjvCiGtlKwRF",
+    "mananitas.mp3"
+  ],
+  fotos: [
+    { url:"https://lh3.googleusercontent.com/d/1oSNyhXuaMkHFnlk5dfedi5vsO_m_xKIo=w1600", pie:"El día que empezó todo" },
+    { url:"https://lh3.googleusercontent.com/d/1t2PKDae_cLTUbuPwSMXwIlrCkL-vWWZ_=w1600", pie:"Tu risa, mi lugar favorito" },
+    { url:"https://lh3.googleusercontent.com/d/1tS96I6Wezf2AH9HPkPWHu6ysdxxB6BFZ=w1600", pie:"Ese viaje que no queríamos terminar" },
+    { url:"https://lh3.googleusercontent.com/d/1KZ9DHYlwJ6j1g5XHuGxjXiLha5n538iM=w1600", pie:"Domingos contigo" },
+    { url:"https://lh3.googleusercontent.com/d/1MgPzNvg8jckdBXa6JrDRsuoYGfcYl2VE=w1600", pie:"Cuando el tiempo se detuvo un rato" },
+    { url:"https://lh3.googleusercontent.com/d/1E6X8QoCw5i8LYcMAPT0e2lSApgLMz-BW=w1600", pie:"Y todo lo que falta" }
+  ]
+};
+const $ = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- nombre ---------- */
+$("#nombre").textContent = CONFIG.nombre;
+document.title = "Feliz cumpleaños, " + CONFIG.nombre;
+
+/* ---------- confeti ---------- */
+const cv=$("#confeti"), cx=cv.getContext("2d");
+let piezas=[], raf=null;
+function medir(){ cv.width=innerWidth*devicePixelRatio; cv.height=innerHeight*devicePixelRatio; cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+medir(); addEventListener("resize",medir);
+const COLORES=["#C9A227","#EBCF86","#6B1F2E","#C2683E","#F4E9D7","#8A2A3C"];
+function confeti(n=110, desdeX=null, desdeY=null){
+  if(reduce) return;
+  for(let i=0;i<n;i++){
+    piezas.push({
+      x: desdeX ?? Math.random()*innerWidth,
+      y: desdeY ?? -20-Math.random()*innerHeight*0.3,
+      w: 5+Math.random()*7, h: 8+Math.random()*10,
+      vx: (Math.random()-.5)*1.6, vy: 1.1+Math.random()*2.2,
+      rot: Math.random()*Math.PI, vr:(Math.random()-.5)*.14,
+      c: COLORES[(Math.random()*COLORES.length)|0],
+      sway: Math.random()*Math.PI*2
+    });
+  }
+  if(!raf) raf=requestAnimationFrame(animar);
+}
+function animar(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  piezas = piezas.filter(p=>p.y < innerHeight+40);
+  piezas.forEach(p=>{
+    p.sway+=0.03; p.x+=p.vx+Math.sin(p.sway)*0.7; p.y+=p.vy; p.rot+=p.vr; p.vy+=0.008;
+    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot);
+    cx.fillStyle=p.c; cx.globalAlpha=.92;
+    cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+    cx.restore();
+  });
+  if(piezas.length){ raf=requestAnimationFrame(animar); } else { raf=null; cx.clearRect(0,0,innerWidth,innerHeight); }
+}
+addEventListener("load",()=>setTimeout(()=>confeti(140),450));
+$("#btnConfeti").addEventListener("click",e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  confeti(90, r.left+r.width/2, r.top);
+});
+
+/* ---------- globos ---------- */
+(function(){
+  if(reduce) return;
+  const cont=$("#globos");
+  const tonos=[["#6B1F2E","#8A2A3C"],["#C2683E","#DD8A5E"],["#C9A227","#EBCF86"],["#F4E9D7","#FFFFFF"]];
+  function nuevo(){
+    if(document.hidden) return;
+    const [a,b]=tonos[(Math.random()*tonos.length)|0];
+    const el=document.createElement("div");
+    el.className="globo";
+    const esc=.6+Math.random()*0.8;
+    el.style.left=(Math.random()*96)+"vw";
+    el.style.width=(40*esc)+"px";
+    el.style.animationDuration=(20+Math.random()*16)+"s";
+    el.style.opacity=(.25+Math.random()*.3).toFixed(2);
+    el.innerHTML='<svg viewBox="0 0 60 92" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs><radialGradient id="g'+Math.random().toString(36).slice(2,7)+'"></radialGradient></defs>'+
+      '<ellipse cx="30" cy="34" rx="26" ry="32" fill="'+a+'"/>'+
+      '<ellipse cx="21" cy="24" rx="7" ry="11" fill="'+b+'" opacity=".55"/>'+
+      '<path d="M30 66 l-5 7 h10z" fill="'+a+'"/>'+
+      '<path d="M30 73 q8 10 0 19" stroke="'+b+'" stroke-width="1" fill="none" opacity=".7"/></svg>';
+    cont.appendChild(el);
+    setTimeout(()=>el.remove(), 38000);
+  }
+  for(let i=0;i<4;i++) setTimeout(nuevo, i*2600);
+  setInterval(nuevo, 4200);
+})();
+
+/* ---------- galería ---------- */
+const pista=$("#pista"), puntos=$("#puntos");
+let idx=0, auto=null;
+function pintarFotos(){
+  pista.innerHTML=""; puntos.innerHTML="";
+  CONFIG.fotos.forEach((f,i)=>{
+    const l=document.createElement("div"); l.className="lamina";
+    l.innerHTML =
+      '<div class="vacio"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.1">'+
+      '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>'+
+      '<small>Foto '+(i+1)+' — abre esta página en tu computadora o usa “Elegir las fotos”.</small></div>'+
+      '<img class="fondo" alt="" aria-hidden="true" loading="lazy">'+
+      '<img class="foto" alt="Foto '+(i+1)+'" loading="lazy">'+
+      '<div class="pie">'+f.pie+'</div>';
+    const img=l.querySelector("img.foto");
+    const fondo=l.querySelector("img.fondo");
+    img.addEventListener("error",()=>{ img.style.display="none"; fondo.style.display="none"; });
+    img.addEventListener("load",()=>{ l.querySelector(".vacio").style.display="none"; });
+    img.addEventListener("click",()=>abrirLupa(img.src));
+    img.src=f.url;
+    fondo.src=f.url;
+    pista.appendChild(l);
+    const p=document.createElement("i"); p.addEventListener("click",()=>ir(i)); puntos.appendChild(p);
+  });
+  ir(0);
+}
+function ir(n){
+  const total=CONFIG.fotos.length;
+  idx=(n+total)%total;
+  pista.style.transform="translateX("+(-idx*100)+"%)";
+  $$("#puntos i").forEach((p,i)=>p.classList.toggle("on",i===idx));
+}
+$("#next").addEventListener("click",()=>{ir(idx+1);reiniciarAuto()});
+$("#prev").addEventListener("click",()=>{ir(idx-1);reiniciarAuto()});
+function reiniciarAuto(){ clearInterval(auto); auto=setInterval(()=>ir(idx+1),6500); }
+reiniciarAuto();
+// deslizar en móvil
+let x0=null;
+pista.addEventListener("touchstart",e=>x0=e.touches[0].clientX,{passive:true});
+pista.addEventListener("touchend",e=>{
+  if(x0===null) return;
+  const dx=e.changedTouches[0].clientX-x0;
+  if(Math.abs(dx)>45){ ir(idx+(dx<0?1:-1)); reiniciarAuto(); }
+  x0=null;
+},{passive:true});
+addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") ir(idx+1);
+  if(e.key==="ArrowLeft") ir(idx-1);
+  if(e.key==="Escape") $("#lupa").classList.remove("on");
+});
+pintarFotos();
+
+// subir fotos propias
+$("#btnFotos").addEventListener("click",()=>$("#inputFotos").click());
+$("#inputFotos").addEventListener("change",e=>{
+  const files=[...e.target.files].slice(0,CONFIG.fotos.length);
+  files.forEach((f,i)=>{ CONFIG.fotos[i].url=URL.createObjectURL(f); });
+  pintarFotos();
+  ir(idx);
+});
+
+// lupa
+function abrirLupa(src){ $("#lupaImg").src=src; $("#lupa").classList.add("on"); }
+$("#lupa").addEventListener("click",()=>$("#lupa").classList.remove("on"));
+
+/* ---------- carta ---------- */
+const sobre=$("#sobre"), perg=$("#pergamino");
+function abrirCarta(){
+  sobre.style.display="none";
+  perg.classList.add("on");
+  const r=perg.getBoundingClientRect();
+  confeti(45, r.left+r.width/2, r.top+60);
+}
+sobre.addEventListener("click",abrirCarta);
+sobre.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();abrirCarta();} });
+
+/* ---------- mariachis + audio ---------- */
+const audio=$("#cancion"), btnCancion=$("#btnCancion"), flotante=$("#flotante"), tarima=$("#tarima");
+audio.src=CONFIG.audio[0];
+let fuente=0;
+function siguienteFuente(){
+  fuente++;
+  if(fuente < CONFIG.audio.length){
+    audio.src=CONFIG.audio[fuente];
+    audio.load();
+    return true;
+  }
+  return false;
+}
+let notasTimer=null;
+function estado(on){
+  tarima.classList.toggle("tocando",on);
+  flotante.classList.toggle("sonando",on);
+  btnCancion.textContent = on ? "Pausar la serenata" : "Tocar Las Mañanitas";
+  clearInterval(notasTimer);
+  if(on && !reduce){
+    notasTimer=setInterval(()=>{
+      const n=document.createElement("span");
+      n.className="nota";
+      n.textContent=["\u266A","\u266B","\u2669","\u266C"][(Math.random()*4)|0];
+      n.style.left=(18+Math.random()*64)+"%";
+      n.style.setProperty("--dx",((Math.random()-.5)*110)+"px");
+      $("#notas").appendChild(n);
+      setTimeout(()=>n.remove(),3500);
+    },420);
+  }
+}
+async function alternar(){
+  try{
+    if(audio.paused){ await audio.play(); estado(true); }
+    else { audio.pause(); estado(false); }
+  }catch(err){
+    if(siguienteFuente()){
+      try{ await audio.play(); estado(true); return; }catch(e){}
+    }
+    $("#avisoAudio").innerHTML='No pude cargar el audio desde el enlace. Toca <b>Usar mi archivo mp3</b> y elige tu archivo.';
+    $("#avisoAudio").style.color="#EBCF86";
+  }
+}
+btnCancion.addEventListener("click",alternar);
+flotante.addEventListener("click",()=>{ alternar(); document.getElementById("mariachis").scrollIntoView({behavior:"smooth"}); });
+audio.addEventListener("ended",()=>estado(false));
+audio.addEventListener("error",()=>{
+  if(!siguienteFuente()){
+    $("#avisoAudio").innerHTML='No pude cargar el audio desde el enlace. Toca <b>Usar mi archivo mp3</b> y elige tu archivo.';
+  }
+});
+$("#btnArchivo").addEventListener("click",()=>$("#inputAudio").click());
+$("#inputAudio").addEventListener("change",e=>{
+  const f=e.target.files[0]; if(!f) return;
+  audio.src=URL.createObjectURL(f);
+  $("#avisoAudio").textContent="Listo: "+f.name;
+  audio.play().then(()=>estado(true)).catch(()=>{});
+});
+
+/* ---------- pastel ---------- */
+(function(){
+  const g=$("#velas"), xs=[98,134,170,206,240], mesa=$("#mesa");
+  let encendidas=0;
+  xs.forEach((x,i)=>{
+    const vela=document.createElementNS("http://www.w3.org/2000/svg","g");
+    vela.setAttribute("class","vela apagado");
+    vela.setAttribute("tabindex","0");
+    vela.setAttribute("role","button");
+    vela.setAttribute("aria-label","Vela "+(i+1));
+    vela.style.cursor="pointer";
+    vela.innerHTML=
+      '<rect x="'+(x-4)+'" y="106" width="8" height="40" rx="3" fill="'+(i%2?"#F4E9D7":"#C2683E")+'"/>'+
+      '<rect x="'+(x-4)+'" y="106" width="8" height="40" rx="3" fill="none" stroke="rgba(0,0,0,.12)"/>'+
+      '<path d="M'+x+' 106 v-7" stroke="#2A1013" stroke-width="2"/>'+
+      '<ellipse class="halo" cx="'+x+'" cy="92" rx="16" ry="18" fill="#C9A227" opacity=".18"/>'+
+      '<path class="llama" d="M'+x+' 78 q9 10 0 21 q-9-11 0-21z" fill="#EBCF86"/>'+
+      '<path class="llama" d="M'+x+' 86 q5 6 0 13 q-5-7 0-13z" fill="#C2683E"/>'+
+      '<circle class="humo" cx="'+x+'" cy="96" r="6" fill="rgba(244,233,215,.5)"/>';
+    function prender(){
+      if(!vela.classList.contains("apagado")) return;
+      vela.classList.remove("apagado"); encendidas++;
+      if(encendidas===xs.length) $("#deseo").textContent="Ahora sí: cierra los ojos y pide algo grande.";
+    }
+    vela.addEventListener("click",prender);
+    vela.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();prender();} });
+    g.appendChild(vela);
+  });
+  $("#btnSoplar").addEventListener("click",e=>{
+    const velas=$$(".vela",g);
+    if(velas.every(v=>v.classList.contains("apagado"))){
+      velas.forEach(v=>v.classList.remove("apagado"));
+      encendidas=xs.length;
+      $("#deseo").textContent="Encendidas. Ahora sopla.";
+      return;
+    }
+    velas.forEach(v=>v.classList.add("apagado"));
+    encendidas=0;
+    $("#deseo").textContent="Que se te cumpla. Y si no, lo intentamos juntos.";
+    const r=mesa.getBoundingClientRect();
+    confeti(130, r.left+r.width/2, r.top+r.height*0.35);
+  });
+})();
+</script>
+</body>
+</html>
